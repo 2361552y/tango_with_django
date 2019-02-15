@@ -20,7 +20,8 @@ def user_logout(request):
 
 @login_required
 def restricted(request):
-    return HttpResponse("Since you're logged in, you can see this text!")
+    # return render("Since you're logged in, you can see this text!")
+    return render(request, 'rango/restricted.html', {})
 
 
 def user_login(request):
@@ -70,6 +71,7 @@ def register(request):
 
 # def index(request):
 #     return HttpResponse("Rango says hey there partner! <br/> <a href='/rango/about/'>About</a>.")
+@login_required
 def add_page(request, category_name_slug):
     try:
         category = Category.objects.get(slug=category_name_slug)
@@ -91,6 +93,7 @@ def add_page(request, category_name_slug):
     return render(request, 'rango/add_page.html', context_dict)
 
 
+@login_required
 def add_category(request):
     form = CategoryForm()
     if request.method == 'POST':
