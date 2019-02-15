@@ -15,7 +15,7 @@ from datetime import datetime
 @login_required
 def user_logout(request):
     logout(request)
-    return HttpResponseRedirect(reverse('index'))
+    return render(request, 'rango/logout.html', {})
 
 
 @login_required
